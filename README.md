@@ -1,78 +1,27 @@
 # Mastering Claude Code
 
-> Goal: achieve the best possible outcomes at the lowest possible cost.
+Using Claude Code effectively, for the best outcomes at the lowest cost.
 
----
+Each module is a self-contained file in [`modules/`](modules/): a concept, a
+worked example you run yourself, and the concrete cost move it implies. Work
+through them in order, or jump to one by topic below.
 
-## 0. Orientation & Mental Model
-- What Claude Code actually is (agentic loop, tools, harness vs. model)
-- The cost equation: tokens in × tokens out × model rate × number of turns
-- The three levers for cost/quality: **model choice**, **context size**, **turn count**
-- How to think about "outcome quality per dollar"
+## Modules
 
-## 1. Context Management (the highest-leverage skill)
-- Why context size is the dominant cost and quality driver
-- CLAUDE.md: project memory, what belongs there vs. not
-- Persistent file-based memory vs. in-session context
-- Compaction / summarization: how it works, when it hurts
-- Keeping context lean: scoping tasks, clearing, `/init`
-- Reference files vs. loading everything
+0. [Orientation & Mental Model](modules/00-orientation.md) — the agentic loop, the cost equation, and the three levers: model choice, context size, turn count.
+1. [Context Management](modules/01-context-management.md) — why context size compounds, and how `/clear`, a lean `CLAUDE.md`, and reference-on-demand control it.
+2. [Models & Effort Levels](modules/02-models-and-effort.md) — current pricing, and matching model and effort to task difficulty.
+3. [Subagents](modules/03-subagents.md) — isolated-context agents that quarantine bulky work and run on cheaper models.
+4. [Skills](modules/04-skills.md) — reusable expertise that loads only when a task triggers it.
+5. [MCP Servers](modules/05-mcp-servers.md) — when external tools are worth their standing context cost, and the "just use a script" test.
+6. [Commands, Hooks & Automation](modules/06-commands-hooks-automation.md) — moving deterministic rules onto the harness instead of the model.
+7. [Workflows & Best Practices](modules/07-workflows-best-practices.md) — plan mode, verification, scoping, and git as ways to cut wasted turns.
+8. [Measuring & Optimizing Cost](modules/08-measuring-and-optimizing-cost.md) — `/cost` and `/context`, and the consolidated playbook.
+9. [Putting It Together](modules/09-putting-it-together.md) — a worked example, a "which tool when" guide, and a reference setup.
 
-## 2. Models & Effort Levels (cost orchestration)
-- The model lineup (Opus / Sonnet / Haiku) and when each is correct
-- Effort/reasoning levels and their cost impact
-- Matching model → task difficulty (cheap models for mechanical work)
-- Fast mode and when it pays off
-- Practical routing rules / heuristics
+## How to use it
 
-## 3. Subagents
-- What subagents are and the isolation boundary (fresh context)
-- When a subagent saves money vs. when it wastes it (cold-start cost)
-- Built-in agent types (Explore, Plan, general-purpose) vs. custom
-- Defining custom agents (frontmatter, tool restrictions, model override)
-- Orchestration patterns: fan-out search, parallel work, plan→execute
-- Anti-patterns (spawning for trivial tasks)
-
-## 4. Skills
-- What a skill is and how it differs from a prompt or an MCP
-- Anatomy: SKILL.md, description-driven triggering, bundled scripts
-- Building a skill (skill-creator), iterating, and measuring/eval
-- Maintaining skills: versioning, descriptions, avoiding trigger collisions
-- When a skill is the right tool vs. a subagent vs. an MCP
-
-## 5. MCP Servers
-- What MCP is, the client/server model, and the tool-deferral cost problem
-- When an MCP is worth it vs. a CLI/script (the "just use bash" test)
-- Connecting, scoping, and securing MCP servers
-- Cost implications: tool-schema bloat, deferred loading
-- Common useful MCPs and how to evaluate new ones
-
-## 6. Custom Commands, Hooks & Automation
-- Slash commands (skills) for repeatable workflows
-- Hooks: deterministic automation the harness runs (not the model)
-- Scheduled tasks / loops / cron for recurring work
-- Settings.json: permissions, env vars, allowlists
-
-## 7. Workflows & Best Practices
-- Plan mode and when to use it
-- Test-driven and verification-driven development
-- Permission modes and reducing prompt friction
-- Git hygiene with Claude Code
-- Code review / security review built-ins
-
-## 8. Measuring & Optimizing Cost
-- How to observe token usage and spend
-- Profiling where the tokens go
-- Concrete cost-reduction tactics (recap across modules)
-- Building a personal "cost playbook"
-
-## 9. Putting It Together — Reference Architectures
-- End-to-end example: a feature built with model routing + subagents + skills
-- A maintainable personal setup (CLAUDE.md + skills + commands + settings)
-- Checklists and decision trees
-
----
-
-## Proposed format for each module (to decide)
-- Concept explanation → worked example → hands-on exercise → cost notes
-- Each module as its own file under `modules/`
+The modules build on each other — context and cost mechanics (0–2) come first
+because the later topics (subagents, skills, MCP, automation) are applications of
+them. The hands-on exercises use this repository itself, so clone it and run them
+as you read. Module 8 is the reference checklist once you know the material.
